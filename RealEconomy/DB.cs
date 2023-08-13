@@ -23,7 +23,7 @@ namespace RealEconomy
                 XmlWriter xw = XmlWriter.Create(Directory.GetCurrentDirectory() + "\\Plugins\\RealEconomy\\db.xml",settings);
                 xw.WriteStartElement("Users");
                 xw.WriteStartElement("User");
-                xw.WriteString("76561198181797231");
+                xw.WriteString("76561198125822773");
                 xw.WriteEndElement();
                 xw.WriteEndElement();
                 xw.Close();
