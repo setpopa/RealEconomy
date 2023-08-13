@@ -33,9 +33,9 @@ namespace RealEconomy
             UnturnedPlayer otherPlayer = UnturnedPlayer.FromName(command[0]);
             if (otherPlayer != null) 
             {
-                //if (caller == otherPlayer) { UnturnedChat.Say(caller, 
-                    //Uconomy.Instance.Translations.Instance.Translate("command_pay_error_pay_self")); return; 
-                //}
+                if (caller == otherPlayer) { UnturnedChat.Say(caller, 
+                    Uconomy.Instance.Translations.Instance.Translate("command_pay_error_pay_self")); return; 
+                }
                 int amount = 0;
                 if (!int.TryParse(command[1], out amount) || amount <= RealEconomy.Instance.minValue) { Uconomy.Instance.Translations // custom translations
                         .Instance.Translate("command_pay_error_invalid_amount"); return; 
