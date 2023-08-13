@@ -1,7 +1,8 @@
 # RealEconomy
 Unturned Plugin for RocketMod 4
 
-Important: Uconomy 1.2 needed: https://github.com/Rawrfuls/Uconomy/releases/tag/1.2
+Important: Plugi Uconomy 1.2 needed: https://github.com/Rawrfuls/Uconomy/releases/tag/1.2
+           And 0Harmony in liberies folder: https://github.com/pardeike/Harmony/releases/tag/v2.2.2.0 (.Net 4.8 recomended)
            Used balance from Uconomy will not be trasfered (maybe customizable soon).           
            First relese so can have many bugs. Please report them here.
 
