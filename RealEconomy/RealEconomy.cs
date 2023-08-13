@@ -64,10 +64,6 @@ namespace RealEconomy
             Logger.Log($"Plugin {Assembly.FullName} unloaded!");
         }
      
-        public override TranslationList DefaultTranslations => new TranslationList()
-        {
-            { "amount_error_must_be_whole_number","Amount must be whole number!" }
-        };
         public bool UserPlayedBefore(UnturnedPlayer unturnedPlayer)
         {
             return _db.db.Element("Users").Elements("User").Any(x => x.Value == unturnedPlayer.CSteamID.ToString());
