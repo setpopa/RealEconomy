@@ -1,4 +1,4 @@
-﻿using Rocket.Core.Plugins;
+using Rocket.Core.Plugins;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -64,8 +64,7 @@ namespace RealEconomy
 
             Logger.Log($"Plugin {Assembly.FullName} unloaded!");
         }
-     
-
+        
         public bool UserPlayedBefore(UnturnedPlayer unturnedPlayer)
         {
             return _db.db.Element("Users").Elements("User").Any(x => x.Value == unturnedPlayer.CSteamID.ToString());
