@@ -1,4 +1,4 @@
-﻿using Rocket.Core.Plugins;
+using Rocket.Core.Plugins;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace RealEconomy
     {
         public static RealEconomy Instance;
 
-        Harmony harmony;
+        private Harmony _harmony;
 
         private DB _db;
         private Patches _patches;
@@ -35,15 +35,16 @@ namespace RealEconomy
 
         protected override void Load()
         {
-            harmony = new Harmony("Uconomy.RealUconomy");
-            harmony.PatchAll();
+            if (_harmony == null)
+            {
+                _harmony = new Harmony("Uconomy.RealUconomy");
+                _harmony.PatchAll();
+            }
 
             Instance = this;
 
             _db = new DB();
             _patches = new Patches();
-
-            //U.Events.OnPlayerConnected += OnPlayerConnected;
 
             foreach (var keyValue in Configuration.Instance.IdAmountList)
             {
@@ -58,12 +59,12 @@ namespace RealEconomy
 
         protected override void Unload()
         {
-            _idAmount = null;
-            
-            harmony.UnpatchAll();
+            Instance = null;
+            _idAmount = null;            
+
             Logger.Log($"Plugin {Assembly.FullName} unloaded!");
         }
-     
+        
         public bool UserPlayedBefore(UnturnedPlayer unturnedPlayer)
         {
             return _db.db.Element("Users").Elements("User").Any(x => x.Value == unturnedPlayer.CSteamID.ToString());
