@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rocket.Unturned.Player;
+﻿using Rocket.Unturned.Player;
 using Steamworks;
 using HarmonyLib;
 
 
-namespace RealEconomy
+namespace RealEconomy.Pathes
 {
     [HarmonyPatch]
-    internal class Patches
+    internal class UconomyPatches
     {   
-        public Patches() { }
+        
+        public UconomyPatches() { }
 
         public static decimal OnBalanceChecked(string SteamID)
         {

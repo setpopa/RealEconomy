@@ -1,17 +1,12 @@
 ﻿using fr34kyn01535.Uconomy;
-using HarmonyLib;
 using Rocket.API;
-using Rocket.Core.Logging;
+using Rocket.API.Collections;
 using Rocket.Unturned.Chat;
 using Rocket.Unturned.Player;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
-namespace RealEconomy
+namespace RealEconomy.Commands
 {
     internal class CommandBalance : IRocketCommand
     {
@@ -26,12 +21,15 @@ namespace RealEconomy
         public List<string> Aliases => new List<string>();
 
         public List<string> Permissions => new List<string>() { "RealEconomy.balance" };
+        private RealEconomy pluginInstance => RealEconomy.Instance;
+        private RealEconomy pluginConfiguration => RealEconomy.Instance;
+        private TranslationList pluginTranslation => RealEconomy.Instance.Translations.Instance;
+        private UconomyConfiguration uconomyConfiguration => Uconomy.Instance.Configuration.Instance;
 
         public void Execute(IRocketPlayer caller, params string[] command)
         {
-            int balance = RealEconomy.Instance.CheckBalance((UnturnedPlayer)caller);
-            UnturnedChat.Say(caller, Uconomy.Instance.Translations.Instance
-                .Translate("command_balance_show", balance, Uconomy.Instance.Configuration.Instance.MoneyName));
+            long balance = pluginConfiguration.CheckBalance((UnturnedPlayer)caller);
+            UnturnedChat.Say(caller, pluginTranslation.Translate("command_balance_show", balance, uconomyConfiguration.MoneyName), pluginInstance.messageColor);
             return;
         }
     }

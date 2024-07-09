@@ -1,10 +1,5 @@
 ﻿using Rocket.API;
-using Steamworks;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace RealEconomy
@@ -13,10 +8,19 @@ namespace RealEconomy
     public class RealEconomyConfiguration : IRocketPluginConfiguration
     {        
         [XmlArrayItem(ElementName = "MoneyType")]
-        public List<KeyValuePair> IdAmountList;
-        
+        public List<KeyValuePair> IdAmountList {  get; set; }
+
+        public bool AllowPayCommand {  get; set; }
+        public bool AutoMerge { get; set; }
+
+        public string MessageColor { get; set; }
+
         public void LoadDefaults()
         {
+            AllowPayCommand = true;
+            AutoMerge = true;
+            MessageColor = "green";
+
             IdAmountList = new List<KeyValuePair>()
             {
                 new KeyValuePair(){Key = 1056, Value = 1},
@@ -29,13 +33,13 @@ namespace RealEconomy
             };
         }
     }
-
+    
     public class KeyValuePair
     {   
         public KeyValuePair() { }
         [XmlAttribute("MoneyId")]
-        public int Key;
+        public ushort Key;
         [XmlAttribute("Value")]
-        public int Value;
+        public long Value;
     }
 }
