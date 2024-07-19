@@ -1,4 +1,5 @@
 ﻿using Rocket.Core.Plugins;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,6 @@ using fr34kyn01535.Uconomy;
 using HarmonyLib;
 using RealEconomy.DBs;
 using RealEconomy.HelpMethods;
-using UnityEngine;
 using RealEconomy.Pathes;
 using Rocket.Unturned.Chat;
 
@@ -94,6 +94,7 @@ namespace RealEconomy
             {"first_connect_bonus", "You recieved {0} {1} for first connection! Check your inventory becouse your currancy is real!" },
         };
         
+       
         private bool UserPlayedBefore(UnturnedPlayer unturnedPlayer)
         {
             return _db.db.Element("Users").Elements("User").Any(x => x.Value == unturnedPlayer.CSteamID.ToString());
@@ -261,7 +262,6 @@ namespace RealEconomy
                         do
                         {
                             var givenIdAmount = idAmountLessThenValueToChange.FirstOrDefault(pair => pair.Value + amountGiven <= valueToChange);
-                            Logger.Log(givenIdAmount.Value.ToString());
                             if (givenIdAmount.Value == 0) { break; }
                             player.GiveItem(givenIdAmount.Key, 1);
                             amountGiven += givenIdAmount.Value;
@@ -278,7 +278,6 @@ namespace RealEconomy
                         do
                         {
                             var givenIdAmount = idAmountLessThenValueToChange.FirstOrDefault(pair => pair.Value + amountGiven <= valueToChange);
-                            Logger.Log(givenIdAmount.Value.ToString());
                             if (givenIdAmount.Value == 0) { break; }
                             player.GiveItem(givenIdAmount.Key, 1);
                             amountGiven += givenIdAmount.Value;
